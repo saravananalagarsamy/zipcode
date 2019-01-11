@@ -83,6 +83,8 @@ Payload
 
 ```
 
+![alt tag](https://raw.githubusercontent.com/saravananalagarsamy/zipcode/master/HowToRun.jpg "How to run in postman")
+
 ## API Doc 
 
 Access swagger here 
