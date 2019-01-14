@@ -21,25 +21,25 @@ public class ZipcodeInterval {
             return false;
         }
         else{
-            zipcodeList.getShipping().setRestrictedZipcodes(restrictedZipcodes);
+            zipcodeList.getShipping().setRestrictedZipcode(restrictedZipcodes);
             return true;
         }
     }
 
     private ArrayList<RestrictedZipcode> merge(Shipping zipcodeList) {
-        if(zipcodeList.getRestrictedZipcodes().size() == 0 || zipcodeList.getRestrictedZipcodes().size() == 1)
+        if(zipcodeList.getRestrictedZipcode().size() == 0 || zipcodeList.getRestrictedZipcode().size() == 1)
             return null;
 
-        Collections.sort(zipcodeList.getRestrictedZipcodes(), new IntervalComparator());
+        Collections.sort(zipcodeList.getRestrictedZipcode(), new IntervalComparator());
 
-        RestrictedZipcode first = zipcodeList.getRestrictedZipcodes().get(0);
+        RestrictedZipcode first = zipcodeList.getRestrictedZipcode().get(0);
         int start = Integer.valueOf(first.getFrom());
         int end = Integer.valueOf(first.getTo());
 
         this.result = new ArrayList<RestrictedZipcode>();
 
-        for (int i = 1; i < zipcodeList.getRestrictedZipcodes().size(); i++) {
-            RestrictedZipcode current = zipcodeList.getRestrictedZipcodes().get(i);
+        for (int i = 1; i < zipcodeList.getRestrictedZipcode().size(); i++) {
+            RestrictedZipcode current = zipcodeList.getRestrictedZipcode().get(i);
             if (Integer.valueOf(current.getFrom()) <= end) {
                 end = Math.max(Integer.valueOf(current.getTo()), end);
             } else {

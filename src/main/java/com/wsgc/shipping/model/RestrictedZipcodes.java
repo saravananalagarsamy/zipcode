@@ -2,12 +2,16 @@ package com.wsgc.shipping.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.ListIterator;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.cache.annotation.Cacheable;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -50,5 +54,42 @@ public class RestrictedZipcodes implements Serializable
         this.shipping = shipping;
     }
 
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("shipping", shipping).append("additionalProperties", additionalProperties).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(shipping).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof RestrictedZipcodes) == false) {
+            return false;
+        }
+        RestrictedZipcodes actual = ((RestrictedZipcodes) other);
+
+        if (actual.getShipping().getRestrictedZipcode().size() == this.getShipping().getRestrictedZipcode().size()) {
+            ListIterator<RestrictedZipcode> expRestrictedZipcodeItr = this.getShipping().getRestrictedZipcode().listIterator();
+            for(ListIterator<RestrictedZipcode> actRestrictedZipcodeItr = actual.getShipping().getRestrictedZipcode().listIterator();actRestrictedZipcodeItr.hasNext();) {
+                RestrictedZipcode ezipcode = actRestrictedZipcodeItr.next();
+                RestrictedZipcode azipcode = expRestrictedZipcodeItr.next();
+                if(ezipcode.getTo().equals(azipcode.getTo()) && ezipcode.getFrom().equals(azipcode.getFrom())){
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
 
 }

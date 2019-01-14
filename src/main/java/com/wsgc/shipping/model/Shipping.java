@@ -19,7 +19,7 @@ public class Shipping implements Serializable
 {
 
     @JsonProperty("restricted_zipcodes")
-    private List<RestrictedZipcode> restrictedZipcodes = null;
+    private List<RestrictedZipcode> restrictedZipcode = null;
 
     private Errors errors;
 
@@ -36,21 +36,21 @@ public class Shipping implements Serializable
 
     /**
      *
-     * @param restrictedZipcodes
+     * @param restrictedZipcode
      */
-    public Shipping(List<RestrictedZipcode> restrictedZipcodes) {
+    public Shipping(List<RestrictedZipcode> restrictedZipcode) {
         super();
-        this.restrictedZipcodes = restrictedZipcodes;
+        this.restrictedZipcode = restrictedZipcode;
     }
 
     @JsonProperty("restricted_zipcodes")
-    public List<RestrictedZipcode> getRestrictedZipcodes() {
-        return restrictedZipcodes;
+    public List<RestrictedZipcode> getRestrictedZipcode() {
+        return restrictedZipcode;
     }
 
     @JsonProperty("restricted_zipcodes")
-    public void setRestrictedZipcodes(List<RestrictedZipcode> restrictedZipcodes) {
-        this.restrictedZipcodes = restrictedZipcodes;
+    public void setRestrictedZipcode(List<RestrictedZipcode> restrictedZipcode) {
+        this.restrictedZipcode = restrictedZipcode;
     }
 
     public Errors getErrors() {
@@ -60,15 +60,5 @@ public class Shipping implements Serializable
     public void setErrors(Errors errors) {
         this.errors = errors;
     }
-
-//    @JsonAnyGetter
-//    public Map<String, Object> getAdditionalProperties() {
-//        return this.additionalProperties;
-//    }
-//
-//    @JsonAnySetter
-//    public void setAdditionalProperty(String name, Object value) {
-//        this.additionalProperties.put(name, value);
-//    }
 
 }
